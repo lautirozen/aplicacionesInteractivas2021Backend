@@ -36,11 +36,11 @@ exports.createProducto = async function (producto) {
         precio: producto.precio,
         marca: producto.marca,
         descripcion: producto.descripcion,
-        codigo: producto,
-        stock: producto,
-        image: producto,
-        cantidad: producto,
-        ptotal:producto
+        codigo: producto.codigo,
+        stock: producto.stock,
+        image: producto.image,
+        cantidad: producto.cantidad,
+        ptotal:producto.ptotal
         
         
     })
