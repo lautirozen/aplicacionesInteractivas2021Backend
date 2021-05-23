@@ -12,6 +12,7 @@ var cors = require('cors');
 //importo rutas
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/user'); 
+var apiProductoRouter = require('./routes/producto');
 
 //instancio el servidor
 var app = express();
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Indico las rutas de los endpoint
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
+app.use('/api/producto',apiProductoRouter);
 
 //onsole.log("processENV",process.env);
 if (process.env.NODE_ENV === 'Development') {

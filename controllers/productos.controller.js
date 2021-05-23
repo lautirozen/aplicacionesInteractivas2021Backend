@@ -9,7 +9,7 @@ exports.getProductos = async function (req, res, next) {
 
     // Check the existence of the query parameters, If doesn't exists assign a default value
     var page = req.query.page ? req.query.page : 1
-    var limit = req.query.limit ? req.query.limit : 10;
+    var limit = req.query.limit ? req.query.limit : 30;
     try {
         var Productos = await ProductoService.getProductos({}, page, limit)
         // Return the Users list with the appropriate HTTP password Code and Message.
@@ -43,5 +43,48 @@ exports.createProducto = async function (req, res, next) {
         //Return an Error Response Message with Code and the Error Message.
         console.log(e)
         return res.status(400).json({status: 400, message: "Producto Creation was Unsuccesfull"})
+    }
+}
+
+
+exports.updateProducto = async function (req, res, next) {
+
+    // Id is necessary for the update
+    if (!req.body.titulo) {
+        return res.status(400).json({status: 400., message: "Name be present"})
+    }
+
+    
+    var Producto = {
+       
+        titulo: req.body.titulo ? req.body.titulo : null,
+        categoria: req.body.categoria ? req.body.categoria : null,
+        precio: req.body.precio ? req.body.precio : null,
+        marca: req.body.marca ? req.body.marca : null,
+        descripcion: req.body.descripcion ? req.body.descripcion : null,
+        codigo: req.body.codigo ? req.body.codigo : null,
+        stock: req.body.stock ? req.body.stock : null,
+        image: req.body.image ? req.body.image : null,
+        cantidad: req.body.cantidad ? req.body.cantidad : null,
+        ptotal: req.body.ptotal ? req.body.ptotal : null
+
+
+    }
+    try {
+        var updatedProducto = await ProductoService.updateProducto(Producto)
+        return res.status(200).json({status: 200, data: updatedProducto, message: "Succesfully Updated Producto"})
+    } catch (e) {
+        return res.status(400).json({status: 400., message: e.message})
+    }
+}
+
+exports.removeProducto = async function (req, res, next) {
+
+    var id = req.body.id;
+    try {
+        var deleted = await ProductoService.deleteProducto(id);
+        res.status(200).send("Succesfully Deleted... ");
+    } catch (e) {
+        return res.status(400).json({status: 400, message: e.message})
     }
 }

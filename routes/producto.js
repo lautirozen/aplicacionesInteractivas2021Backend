@@ -8,7 +8,11 @@ var ProductoController = require('../controllers/productos.controller');
 router.get('/test', function(req, res, next) {
     res.send('Llegaste a la ruta de  api/user');
   });
-router.post('/producto/crear', ProductoController.createProducto)
+router.post('/crear', ProductoController.createProducto)
+router.get('/todos', ProductoController.getProductos)
+router.post('/actualizar', ProductoController.updateProducto)
+router.post('/deshabilitar', ProductoController.removeProducto)
+
 /*router.get('/login', UserController.loginUser)
 router.get('/users', UserController.getUsers)
 router.get('/user/profile', UserController.getUsersByMail)

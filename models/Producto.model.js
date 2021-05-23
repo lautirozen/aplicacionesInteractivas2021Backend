@@ -2,16 +2,16 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 var UserSchema = new mongoose.Schema({
-    titulo: String,
-    categoria: String,
-    precio: String,
-    marca: String,
-    descripcion: String,
-    codigo: String,
-    stock: Float32Array,
-    image: String,
-    cantidad: Float32Array,
-    ptotal:Float32Array
+    titulo: {type:String,required: true, unique: true} ,
+    categoria: {type:String,required: true},
+    precio: {type:String,required: true},
+    marca: {type:String,required: true},
+    descripcion: {type:String,required: true},
+    codigo: {type:String,required: true},
+    stock: {type:Number,required: true},
+    image: {type:String,required: true},
+    cantidad: {type:Number,required: true},
+    ptotal:{type:mongoose.Decimal128 ,required: true}
 }, {collection: "productos"})
 /*id: 1,
         titulo: "Cafetera Bialetti Moka Express 18 pocillos",
