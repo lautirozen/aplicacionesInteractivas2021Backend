@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-
+var mongoosePaginate = require('mongoose-paginate')
 
 var UserSchema = new mongoose.Schema({
     titulo: String,
@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
     marca: String,
     descripcion: String,
     codigo: String,
-    stock: String,
+    stock: Float32Array,
     image: String,
     cantidad: Float32Array,
     ptotal:Float32Array
@@ -24,6 +24,7 @@ var UserSchema = new mongoose.Schema({
         image:cafeterabialetti,
         cantidad:1,
         ptotal:0,*/
+UserSchema.plugin(mongoosePaginate)
 const Producto = mongoose.model('Producto', UserSchema)
 
 module.exports = Producto;

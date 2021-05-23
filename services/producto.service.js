@@ -1,12 +1,12 @@
 // Gettign the Newly created Mongoose Model we just created 
-var User = require('../models/User.model');
-var bcrypt = require('bcryptjs');
+var Producto = require('../models/Producto.model');
+//var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 // Saving the context of this module inside the _the variable
 _this = this
 
-exports.getUsers = async function (query, page, limit) {
+exports.getProductos = async function (query, page, limit) {
 
     // Options setup for the mongoose paginate
     var options = {
@@ -16,14 +16,14 @@ exports.getUsers = async function (query, page, limit) {
     // Try Catch the awaited promise to handle the error 
     try {
         console.log("Query",query)
-        var Users = await User.paginate(query, options)
+        var Productos = await Producto.paginate(query, options)
         // Return the Userd list that was retured by the mongoose promise
-        return Users;
+        return Productos;
 
     } catch (e) {
         // return a Error message describing the reason 
         console.log("error services",e)
-        throw Error('Error while Paginating Users');
+        throw Error('Error while Paginating Productos');
     }
 }
 
@@ -46,10 +46,10 @@ exports.createProducto = async function (producto) {
     })
 
     try {
-        // Saving the User 
-        var savedUser = await newUser.save();
+        // Saving the product
+        var savedProducto = await newProducto.save();
         var token = jwt.sign({
-            id: savedUser._id
+            id: savedProducto._id
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
@@ -57,6 +57,6 @@ exports.createProducto = async function (producto) {
     } catch (e) {
         // return a Error message describing the reason 
         console.log(e)    
-        throw Error("Error while Creating User")
+        throw Error("Error while Creating Producto")
     }
 }
