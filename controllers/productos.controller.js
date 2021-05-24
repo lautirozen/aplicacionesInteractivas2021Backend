@@ -31,7 +31,7 @@ exports.createProducto = async function (req, res, next) {
         descripcion: req.body.descripcion,
         codigo: req.body.codigo,
         stock: req.body.stock,
-        image: req.body.image,
+        image: req.file.path,
         cantidad: req.body.cantidad,
         ptotal:req.body.ptotal,
     }
@@ -48,7 +48,7 @@ exports.createProducto = async function (req, res, next) {
 
 
 exports.updateProducto = async function (req, res, next) {
-
+    console.log('as ',req.body)
     // Id is necessary for the update
     if (!req.body.titulo) {
         return res.status(400).json({status: 400., message: "Name be present"})
@@ -64,7 +64,7 @@ exports.updateProducto = async function (req, res, next) {
         descripcion: req.body.descripcion ? req.body.descripcion : null,
         codigo: req.body.codigo ? req.body.codigo : null,
         stock: req.body.stock ? req.body.stock : null,
-        image: req.body.image ? req.body.image : null,
+        image: req.file.path ? req.file.path : null,
         cantidad: req.body.cantidad ? req.body.cantidad : null,
         ptotal: req.body.ptotal ? req.body.ptotal : null
 

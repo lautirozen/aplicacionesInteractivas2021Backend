@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bluebird = require('bluebird');
 var fs = require('fs');
-
+var authorization = require('./auth/authorization')
 //incorporo cors
 var cors = require('cors');
 
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Indico las rutas de los endpoint
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
-app.use('/api/producto',apiProductoRouter);
+app.use('/api/producto',authorization ,apiProductoRouter);
 
 //onsole.log("processENV",process.env);
 if (process.env.NODE_ENV === 'Development') {
