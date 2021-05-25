@@ -29,13 +29,13 @@ exports.getPedidos = async function (query, page, limit) {
 
 exports.createPedido = async function (pedido) {
     // Creating a new Mongoose Object by using the new keyword
-
+    console.log(pedido)
     var newPedido = new Pedido({
         nroPedido: pedido.nroPedido,
         fecha: pedido.fecha,
         precioTotal: pedido.precioTotal,
         direccion: pedido.direccion,
-        productos: [
+        productos: pedido.productos,/*[
             {
                 titulo: pedido.titulo,
                 categoria: pedido.categoria,
@@ -48,7 +48,7 @@ exports.createPedido = async function (pedido) {
                 cantidad: pedido.cantidad,
                 ptotal:pedido.ptotal,
             }
-        ],
+        ],*/
         nombre: pedido.nombre,
         apellido: pedido.apellido,
         userId: pedido.userId
@@ -56,6 +56,7 @@ exports.createPedido = async function (pedido) {
 
     try {
         // Saving the product
+        console.log(newPedido)
         var savedPedido = await newPedido.save();
         return newPedido;
     } catch (e) {

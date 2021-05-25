@@ -29,26 +29,26 @@ exports.createPedido = async function (req, res, next) {
         fecha: req.body.fecha,
         precioTotal: req.body.precioTotal,
         direccion: req.body.direccion,
-        productos: [
+        productos: req.body.productos, /*[
             {
-                titulo: req.body.titulo,
-                categoria: req.body.categoria,
-                precio: req.body.precio,
-                marca: req.body.marca,
-                descripcion: req.body.descripcion,
-                codigo: req.body.codigo,
-                stock: req.body.stock,
-                image: req.body.image,//req.file.path,
-                cantidad: req.body.cantidad,
-                ptotal:req.body.ptotal,
+                titulo: req.body.productos.titulo,
+                categoria: req.body.productos.categoria,
+                precio: req.body.productos.precio,
+                marca: req.body.productos.marca,
+                descripcion: req.body.productos.descripcion,
+                codigo: req.body.productos.codigo,
+                stock: req.body.productos.stock,
+                image: req.body.productos.image,//req.file.path,
+                cantidad: req.body.productos.cantidad,
+                ptotal:req.body.productos.ptotal,
             }
-        ],
+        ],*/
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         userId: req.body.userId
     }
     try {
-        // Calling the Service function with the new object from the Request Body
+        // Calling the Service function with the new object from the Request Body 
         var createdPedido = await PedidoService.createPedido(Pedido)
         return res.status(201).json({createdPedido, message: "Succesfully Created Pedido"})
     } catch (e) {

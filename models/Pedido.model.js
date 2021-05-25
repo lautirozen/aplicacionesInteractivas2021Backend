@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
         direccion: {type:String,required: true},
         productos: [
             {
-                titulo: {type:String,required: true, unique: true} ,
+                titulo: {type:String,required: true} ,
                 categoria: {type:String,required: true},
                 precio: {type:String,required: true},
                 marca: {type:String,required: true},
