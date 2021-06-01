@@ -65,3 +65,38 @@ exports.createPedido = async function (pedido) {
         throw Error("Error while Creating Pedido")
     }
 }
+
+exports.getPedidoPorUsuario = async function (pedido) {
+    
+    
+    try {
+        // Find the User 
+        console.log("retrieving pedido from id:",pedido)
+        var _details = await Pedido.find(
+            {userId :pedido.userId}
+        );
+       
+        return _details;
+    } catch (e) {
+        // return a Error message describing the reason     
+        throw Error("Error while retriving")
+    }
+
+    //old
+    try {
+        //Find the old User Object by the Id
+        var pedidoEncontrado = await Pedido.find(id);
+    } catch (e) {
+        throw Error("Error occured while Finding the User")
+    }
+    // If no old User Object exists return false
+    if (!pedidoEncontrado) {
+        return false;
+    }
+    try {
+        return pedidoEncontrado;
+    } catch (e) {
+        throw Error("And Error occured while updating the User");
+    }
+}
+

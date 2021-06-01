@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 var UserSchema = new mongoose.Schema({
-        nroPedido: {type:String,required: true, unique: true},
+        nroPedido: mongoose.Schema.Types.ObjectId,
         fecha: {type:String,required: true} ,
         precioTotal: {type:mongoose.Decimal128,required: true},
         direccion: {type:String,required: true},

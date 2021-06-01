@@ -57,3 +57,22 @@ exports.createPedido = async function (req, res, next) {
         return res.status(400).json({status: 400, message: "Pedido Creation was Unsuccesfull"})
     }
 }
+
+exports.getPedidoPorUsuario = async function (req, res, next) {
+
+     // Req.Body contains the form submit values.
+     console.log("body",req.body)
+     var filtro = {
+         userId: req.body.userId,
+         
+     }
+     try {
+         // Calling the Service function with the new object from the Request Body
+         var pedidos = await PedidoService.getPedidoPorUsuario(filtro);
+         return res.status(201).json({pedidos, message: "Succesfully retrieve"})
+     } catch (e) {
+         //Return an Error Response Message with Code and the Error Message.
+         return res.status(400).json({status: 400, message: "Invalid username or password"})
+     }
+   
+}
