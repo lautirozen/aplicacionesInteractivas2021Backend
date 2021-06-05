@@ -11,7 +11,7 @@ router.get('/test', function(req, res, next) {
 router.post('/registration', UserController.createUser)
 router.post('/login', UserController.loginUser)
 router.get('/users', UserController.getUsers)
-router.get('/user/profile', UserController.getUsersByMail)
+router.post('/user/profile', UserController.getUsersByMail)
 router.post('/user/update/password', UserController.updateUser)
 
 
