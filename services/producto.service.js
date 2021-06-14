@@ -39,6 +39,7 @@ exports.createProducto = async function (producto) {
         codigo: producto.codigo,
         stock: producto.stock,
         image: producto.image,
+        cloudinary_id: producto.cloudinary_id,
         cantidad: producto.cantidad,
         ptotal:producto.ptotal
 
@@ -59,7 +60,7 @@ exports.createProducto = async function (producto) {
 
 exports.updateProducto = async function (producto) {
     
-    var id = {titulo :producto.titulo}
+    var id = {titulo : producto.titulo}
     
     try {
         //Find the old User Object by the Id
@@ -69,28 +70,44 @@ exports.updateProducto = async function (producto) {
     }
     // If no old User Object exists return false
     if (!oldProducto) {
-        return false;
-    }
-    //Edit the User Object
-    oldProducto.titulo = producto.titulo
-    oldProducto.categoria = producto.categoria
-    oldProducto.precio = producto.precio
-    oldProducto.marca = producto.marca
-    oldProducto.descripcion = producto.descripcion
-    oldProducto.codigo = producto.codigo
-    oldProducto.stock = producto.stock
-    oldProducto.image = producto.image
-    oldProducto.cantidad = producto.cantidad
-    oldProducto.ptotal = producto.ptotal
-    
-    try {
-        var savedProducto = await oldProducto.save()
-        return savedProducto;
-    } catch (e) {
-        throw Error("And Error occured while updating the Producto");
+        throw Error("Error occured while Finding the Producto")
+    }else{
+        //Edit the User Object
+        oldProducto.titulo = producto.titulo
+        oldProducto.categoria = producto.categoria
+        oldProducto.precio = producto.precio
+        oldProducto.marca = producto.marca
+        oldProducto.descripcion = producto.descripcion
+        oldProducto.codigo = producto.codigo
+        oldProducto.stock = producto.stock
+        oldProducto.image = producto.image
+        oldProducto.cantidad = producto.cantidad
+        oldProducto.ptotal = producto.ptotal
+        
+        try {
+            var savedProducto = await oldProducto.save()
+            return savedProducto;
+        } catch (e) {
+            throw Error("And Error occured while updating the Producto");
+        }
     }
 }
 
+exports.findById = async function (id) {
+    console.log("id",id)
+    // Creating a new Mongoose Object by using the new keyword
+    try {
+        // Find the User 
+        var _details = await Producto.findOne({
+            _id: id
+        });
+        return {_details};
+    } catch (e) {
+        // return a Error message describing the reason     
+        throw Error("Error while finding product")
+    }
+
+}
 
 exports.deleteProducto = async function (id) {
 

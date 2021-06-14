@@ -1,8 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var PedidoController = require('../controllers/pedidos.controller');
-const multer = require('multer');
-const upload = multer({dest: 'uploads/'});
+const upload = require("./utils/multer");
 
 // Authorize each API with middleware and map to the Controller Functions
 /* GET users listing. */

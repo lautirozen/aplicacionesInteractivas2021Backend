@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
     codigo: {type:String,required: true},
     stock: {type:Number,required: true},
     image: {type:String,required: true, unique: true},
+    cloudinary_id: {type:String},
     cantidad: {type:Number,required: true},
     ptotal:{type:mongoose.Decimal128 ,required: true}
 }, {collection: "productos"})
