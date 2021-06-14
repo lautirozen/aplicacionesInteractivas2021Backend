@@ -81,6 +81,7 @@ exports.updateProducto = async function (producto) {
         oldProducto.codigo = producto.codigo
         oldProducto.stock = producto.stock
         oldProducto.image = producto.image
+        oldProducto.cloudinary_id = producto.cloudinary_id
         oldProducto.cantidad = producto.cantidad
         oldProducto.ptotal = producto.ptotal
         
