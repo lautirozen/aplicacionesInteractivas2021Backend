@@ -60,7 +60,7 @@ exports.createProducto = async function (producto) {
 
 exports.updateProducto = async function (producto) {
     
-    var id = {id : producto.id}
+    var id = {_id : producto.id}
     
     try {
         //Find the old User Object by the Id
