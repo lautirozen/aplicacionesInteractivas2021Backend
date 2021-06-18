@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 var UserSchema = new mongoose.Schema({
+    _id: {type:String},
     titulo: {type:String,required: true, unique: true} ,
     categoria: {type:String,required: true},
     precio: {type:String,required: true},
