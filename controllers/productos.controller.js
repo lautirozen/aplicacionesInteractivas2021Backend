@@ -62,10 +62,10 @@ exports.createProducto = async function (req, res, next) {
 exports.updateProducto = async function (req, res, next) {
     console.log('as ',req.body)
     // Id is necessary for the update
-    if (!req.body.id) {
+    if (!req.body.titulo) {
         return res.status(400).json({status: 400., message: "Name be present"})
     }else{
-        var oldProducto = await Productooo.findOne({_id: req.body.id});
+        var oldProducto = await Productooo.findOne({titulo: req.body.titulo});
         if(!oldProducto){
             throw Error("Error occured while Finding the Producto")
         }else{
