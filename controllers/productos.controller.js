@@ -45,10 +45,6 @@ exports.createProducto = async function (req, res, next) {
         try {
             // Calling the Service function with the new object from the Request Body
             var createdProducto = await ProductoService.createProducto(Producto)
-            /*if (userImg.nombreImagen!=='')
-            {
-                var newUserImg = await UserImgService.createUserImg(userImg);
-            }*/
             return res.status(201).json({createdProducto,message: "Succesfully Created Producto"})
         } catch (e) {
             //Return an Error Response Message with Code and the Error Message.
