@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
     descripcion: {type:String,required: true},
     codigo: {type:String,required: true},
     stock: {type:Number,required: true},
-    image: {type:String,required: true, unique: true},
+    image: {type:String},
     cloudinary_id: {type:String},
     cantidad: {type:Number,required: true},
     ptotal:{type:mongoose.Decimal128 ,required: true}
