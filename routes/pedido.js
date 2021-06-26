@@ -10,7 +10,7 @@ router.get('/test', function(req, res, next) {
   });
 router.post('/crear',  PedidoController.createPedido)
 router.get('/todos', PedidoController.getPedidos)
-router.get('/usuario', PedidoController.getPedidoPorUsuario)
+router.post('/usuario', PedidoController.getPedidoPorUsuario)
 
 //router.get('/:id', PedidoController.getPedidoPorUser)
 //router.post('/actualizar', upload.single('image') , PedidoController.updatePedido)
