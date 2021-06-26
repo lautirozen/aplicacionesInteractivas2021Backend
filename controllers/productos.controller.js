@@ -66,20 +66,36 @@ exports.updateProducto = async function (req, res, next) {
             throw Error("Error occured while Finding the Producto")
         }else{
             console.log(oldProducto)
-            await cloudinary.uploader.destroy(oldProducto.cloudinary_id);
-            const result = await cloudinary.uploader.upload(req.file.path);
-            var Producto = {
-                titulo: req.body.titulo ? req.body.titulo : null,
-                categoria: req.body.categoria ? req.body.categoria : null,
-                precio: req.body.precio ? req.body.precio : null,
-                marca: req.body.marca ? req.body.marca : null,
-                descripcion: req.body.descripcion ? req.body.descripcion : null,
-                codigo: req.body.codigo ? req.body.codigo : null,
-                stock: req.body.stock ? req.body.stock : null,
-                image: result.secure_url ? result.secure_url : null,
-                cloudinary_id: result.public_id ? result.public_id : null,
-                cantidad: req.body.cantidad ? req.body.cantidad : null,
-                ptotal: req.body.ptotal ? req.body.ptotal : null
+            if(req.file !== undefined){
+                await cloudinary.uploader.destroy(oldProducto.cloudinary_id);
+                const result = await cloudinary.uploader.upload(req.file.path);
+                var Producto = {
+                    titulo: req.body.titulo ? req.body.titulo : null,
+                    categoria: req.body.categoria ? req.body.categoria : null,
+                    precio: req.body.precio ? req.body.precio : null,
+                    marca: req.body.marca ? req.body.marca : null,
+                    descripcion: req.body.descripcion ? req.body.descripcion : null,
+                    codigo: req.body.codigo ? req.body.codigo : null,
+                    stock: req.body.stock ? req.body.stock : null,
+                    image: result.secure_url ? result.secure_url : null,
+                    cloudinary_id: result.public_id ? result.public_id : null,
+                    cantidad: req.body.cantidad ? req.body.cantidad : null,
+                    ptotal: req.body.ptotal ? req.body.ptotal : null
+                }
+            }else{
+                var Producto = {
+                    titulo: req.body.titulo ? req.body.titulo : null,
+                    categoria: req.body.categoria ? req.body.categoria : null,
+                    precio: req.body.precio ? req.body.precio : null,
+                    marca: req.body.marca ? req.body.marca : null,
+                    descripcion: req.body.descripcion ? req.body.descripcion : null,
+                    codigo: req.body.codigo ? req.body.codigo : null,
+                    stock: req.body.stock ? req.body.stock : null,
+                    image: req.body.image ? req.body.image : null,
+                    cloudinary_id: req.body.cloudinary_id ? req.body.cloudinary_id : null,
+                    cantidad: req.body.cantidad ? req.body.cantidad : null,
+                    ptotal: req.body.ptotal ? req.body.ptotal : null
+                }
             }
             try {
                 var updatedProducto = await ProductoService.updateProducto(Producto)
