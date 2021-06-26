@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Indico las rutas de los endpoint
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
+app.use('/api/product',apiProductoRouter);
 app.use('/api/producto',authorization ,apiProductoRouter);
 app.use('/api/pedido',authorization ,apiPedidoRouter);
 //onsole.log("processENV",process.env);
