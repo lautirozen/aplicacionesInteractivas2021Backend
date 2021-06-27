@@ -67,7 +67,6 @@ exports.updateProducto = async function (req, res, next) {
         }else{
             console.log(oldProducto)
             if(req.file !== undefined){
-                await cloudinary.uploader.destroy(oldProducto.cloudinary_id);
                 const result = await cloudinary.uploader.upload(req.file.path);
                 var Producto = {
                     titulo: req.body.titulo ? req.body.titulo : null,
