@@ -109,7 +109,6 @@ exports.updateProducto = async function (req, res, next) {
 exports.removeProducto = async function (req, res, next) {
     var id = req.body.id;
     let producto = await ProductoService.findById(req.body.id);
-    await cloudinary.uploader.destroy(producto._details.cloudinary_id);
     try {
         var deleted = await ProductoService.deleteProducto(id);
         res.status(200).send("Succesfully Deleted... ");
