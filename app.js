@@ -11,9 +11,10 @@ var cors = require('cors');
 
 //importo rutas
 var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/user'); 
+var apiRouter = require('./routes/user');
 var apiProductoRouter = require('./routes/producto');
 var apiPedidoRouter = require('./routes/pedido');
+var apiProductRouter = require('./routes/product');
 //instancio el servidor
 var app = express();
 
@@ -36,9 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Indico las rutas de los endpoint
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
-app.use('/api/product',apiProductoRouter);
-app.use('/api/producto',authorization ,apiProductoRouter);
-app.use('/api/pedido',authorization ,apiPedidoRouter);
+app.use('/api/product', apiProductRouter);
+app.use('/api/producto', authorization, apiProductoRouter);
+app.use('/api/pedido', authorization, apiPedidoRouter);
 //onsole.log("processENV",process.env);
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();
@@ -49,20 +50,20 @@ if (process.env.NODE_ENV === 'Development') {
 var mongoose = require('mongoose')
 mongoose.Promise = bluebird;
 let url = `${process.env.DATABASE1}${process.env.DATABASE2}=${process.env.DATABASE3}=${process.env.DATABASE4}`
-console.log("BD",url);
+console.log("BD", url);
 let opts = {
-  useNewUrlParser : true, 
-  connectTimeoutMS:20000, 
+  useNewUrlParser: true,
+  connectTimeoutMS: 20000,
   useUnifiedTopology: true
-  };
+};
 
-mongoose.connect(url,opts)
+mongoose.connect(url, opts)
   .then(() => {
     console.log(`Succesfully Connected to theMongodb Database..`)
   })
   .catch((e) => {
     console.log(`Error Connecting to the Mongodb Database...`),
-    console.log(e)
+      console.log(e)
   })
 // catch 404 and forward to error handler 
 app.use(function (req, res, next) {
@@ -89,8 +90,8 @@ app.use(function (err, req, res, next) {
 // Setup server port
 var port = process.env.PORT || 8080;
 // Escuchar en el puerto
-app.listen(port,()=>{
-    console.log('Servidor de ABM Users iniciado en el puerto ',port);
+app.listen(port, () => {
+  console.log('Servidor de ABM Users iniciado en el puerto ', port);
 });
 
 
